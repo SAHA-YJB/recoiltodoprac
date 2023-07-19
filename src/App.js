@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import TodoItemCreator from "./components/TodoItemCreator";
+import { useRecoilValue } from "recoil";
+import { todoListAtom } from "./recoil/atom/todoListAtom";
+import TodoItem from "./components/TodoItem";
 
-function App() {
+const App = () => {
+  //아톰의 값가져오기(값참조만)
+  const allTodoList = useRecoilValue(todoListAtom);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TodoItemCreator />
+      {allTodoList.map((item) => {
+        return <TodoItem key={item.id} item={item} />;
+      })}
     </div>
   );
-}
+};
 
 export default App;
