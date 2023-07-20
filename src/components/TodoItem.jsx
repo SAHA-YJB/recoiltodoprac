@@ -5,7 +5,6 @@ import { todoListAtom } from "../recoil/atom/todoListAtom";
 const TodoItem = ({ item }) => {
   //전체투두리스트
   const [todoList, setTodoList] = useRecoilState(todoListAtom);
-  console.log(todoList);
   //인덱스 값 찾기(전체투두리스에서 프랍받아온 item과 같은 인덱스를 반환)
   const index = todoList.findIndex((listItem) => listItem === item);
   //글 수정
